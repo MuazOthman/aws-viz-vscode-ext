@@ -3,6 +3,7 @@
   "displayName": "AWS-Viz",
   "description": "Generate Typescript and SAM template code for an AWS cloud-native serverless applications from diagrams",
   "version": "0.0.1",
+  "publisher": "MuazOthman",
   "engines": {
     "vscode": "^1.63.0"
   },
