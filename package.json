@@ -1,0 +1,71 @@
+{
+  "name": "aws-viz-vscode-ext",
+  "displayName": "AWS-Viz",
+  "description": "Generate Typescript and SAM template code for an AWS cloud-native serverless applications from diagrams",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.63.0"
+  },
+  "icon": "images/logo.png",
+  "repository": {
+    "url": "https://github.com/MuazOthman/aws-viz-vscode-ext"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "activationEvents": [
+    "onCommand:aws-viz.generate"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aws-viz.generate",
+        "title": "AWS-Viz: Generate/Update Code",
+        "enablement": "resourcePath =~ /\\.drawio$/",
+        "icon": {
+          "light": "./images/generate-light.svg",
+          "dark": "./images/generate-dark.svg"
+        }
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourcePath =~ /\\.drawio$/",
+          "command": "aws-viz.generate",
+          "group": "AWS-Viz"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "resourcePath =~ /\\.drawio$/",
+          "command": "aws-viz.generate",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.63.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "@vscode/test-electron": "^1.6.2",
+    "eslint": "^8.1.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.3",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@muazothman/aws-viz": "^0.0.1"
+  }
+}
