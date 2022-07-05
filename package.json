@@ -63,6 +63,6 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "@muazothman/aws-viz": "^0.0.1"
+    "@muazothman/aws-viz": "^0.0.2"
   }
 }
