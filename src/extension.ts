@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
-import { normalize } from "path";
-import { listFilesToBeUpdated, updateWorkspace } from "@muazothman/aws-viz";
+import { normalize, join } from "path";
+import { existsSync, readFileSync } from "fs";
+import { AWSViz, AWSVizOptions } from "@muazothman/aws-viz";
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
@@ -31,7 +32,44 @@ export function activate(context: vscode.ExtensionContext) {
       console.log("workspaceRoot", workspaceRoot);
       console.log("diagramFilePath", diagramFilePath);
 
-      const filesToBeUpdated = listFilesToBeUpdated(
+      const configFilePath = join(workspaceRoot, "aws-viz.config.json");
+
+      let config: AWSVizOptions = {};
+
+      if (existsSync(configFilePath)) {
+        config = JSON.parse(readFileSync(configFilePath, "utf8"));
+      }
+
+      console.log("config:");
+      console.log(JSON.stringify(config, null, 2));
+
+      config.afterAppCompiled = (scenario, app) => {
+        if (scenario === "listFilesToBeUpdated") {
+          for (let i = 0; i < app.components.length; i++) {
+            const c = app.components[i];
+            console.log(
+              c.toString(),
+              `(${Object.keys(c.properties)
+                .map((p) => `${p}: ${c.properties[p]}`)
+                .join(", ")})`
+            );
+            for (let j = 0; j < c.outboundConnections.length; j++) {
+              const conn = c.outboundConnections[j];
+              const connectionString = conn.label
+                ? `${conn.target} labeled: "${conn.label}"`
+                : conn.target;
+              console.log(`\t=> ${connectionString}`);
+            }
+          }
+        }
+      };
+
+      const awsViz = new AWSViz({
+        readerOptions: { apiTypeColorMapping: { B0074C: "Websocket" } },
+        afterAppCompiled: config.afterAppCompiled,
+      });
+
+      const filesToBeUpdated = awsViz.listFilesToBeUpdated(
         diagramFilePath,
         workspaceRoot
       );
@@ -66,7 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
                   `Creating/updating ${filesToBeUpdated.length} files`
                 );
                 try {
-                  updateWorkspace(diagramFilePath!, workspaceRoot);
+                  awsViz.updateWorkspace(diagramFilePath!, workspaceRoot);
                   vscode.window.showInformationMessage(
                     `Created/updated ${filesToBeUpdated.length} files`
                   );
