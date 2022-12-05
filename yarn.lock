@@ -36,10 +36,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@muazothman/aws-viz@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@muazothman/aws-viz/-/aws-viz-0.0.8.tgz#7f53498bce326a9e2cbf07575771e949d859bc35"
-  integrity sha512-6uv/lBZ1KPk0juXrAg7S+9XnEdAj4lKPDmI1/0Pn/nKnh59DzzA7T4IPHZEd77W7HVZsqLaEEqhBRfVgPy99jw==
+"@muazothman/aws-viz@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@muazothman/aws-viz/-/aws-viz-0.0.9.tgz#b158c7a4d599c601fe4cca63c56d05287ccd3bab"
+  integrity sha512-fuN2kdL2PBwNYAF7miQhZd/g9XpEnlEVWlkgUk7KIDQyEGyV8URO5fC8hVPp1EgogiBuEnlvtVsSncCJ1c0kAw==
   dependencies:
     fast-xml-parser "^4.0.12"
     html-to-text "^9.0.0"
