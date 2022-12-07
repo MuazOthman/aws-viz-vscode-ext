@@ -3,14 +3,22 @@ import { normalize, join } from "path";
 import { existsSync, readFileSync } from "fs";
 import { AWSViz, AWSVizOptions } from "@muazothman/aws-viz";
 
+let outputChannel: vscode.OutputChannel;
+
 export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand(
+  outputChannel = vscode.window.createOutputChannel("AWS-Viz");
+
+  const logMessage = (message: string) => {
+    outputChannel.appendLine(message);
+  };
+
+  const disposable = vscode.commands.registerCommand(
     "aws-viz.generate",
     async (uri: vscode.Uri) => {
       let diagramFilePath: string | undefined = "";
       if (uri === undefined) {
-        console.log(
-          "workspace",
+        logMessage("workspace:");
+        logMessage(
           JSON.stringify(
             {
               notebookDocuments: vscode.workspace.notebookDocuments,
@@ -29,8 +37,8 @@ export function activate(context: vscode.ExtensionContext) {
         return;
       }
       const workspaceRoot = vscode.workspace.workspaceFolders![0].uri.path;
-      console.log("workspaceRoot", workspaceRoot);
-      console.log("diagramFilePath", diagramFilePath);
+      logMessage(`workspaceRoot: ${workspaceRoot}`);
+      logMessage(`diagramFilePath: ${diagramFilePath}`);
 
       const configFilePath = join(workspaceRoot, "aws-viz.config.json");
 
@@ -40,16 +48,15 @@ export function activate(context: vscode.ExtensionContext) {
         config = JSON.parse(readFileSync(configFilePath, "utf8"));
       }
 
-      console.log("config:");
-      console.log(JSON.stringify(config, null, 2));
+      logMessage("config:");
+      logMessage(JSON.stringify(config, null, 2));
 
       config.afterAppCompiled = (scenario, app) => {
         if (scenario === "listFilesToBeUpdated") {
           for (let i = 0; i < app.components.length; i++) {
             const c = app.components[i];
-            console.log(
-              c.toString(),
-              `(${Object.keys(c.properties)
+            logMessage(
+              `${c.toString()}: (${Object.keys(c.properties)
                 .map((p) => `${p}: ${c.properties[p]}`)
                 .join(", ")})`
             );
@@ -58,16 +65,13 @@ export function activate(context: vscode.ExtensionContext) {
               const connectionString = conn.label
                 ? `${conn.target} labeled: "${conn.label}"`
                 : conn.target;
-              console.log(`\t=> ${connectionString}`);
+              logMessage(`\t=> ${connectionString}`);
             }
           }
         }
       };
 
-      const awsViz = new AWSViz({
-        readerOptions: { apiTypeColorMapping: { B0074C: "Websocket" } },
-        afterAppCompiled: config.afterAppCompiled,
-      });
+      const awsViz = new AWSViz(config);
 
       const filesToBeUpdated = awsViz.listFilesToBeUpdated(
         diagramFilePath,
@@ -95,12 +99,12 @@ export function activate(context: vscode.ExtensionContext) {
         {
           placeHolder: `Please confirm: ${confirmationText} will be created/updated`,
           onDidSelectItem: (item) => {
-            console.log("User selected option: ", item);
+            logMessage(`User selected option: ${item}`);
 
             if (item) {
               const itemAsString = typeof item === "string" ? item : item.label;
               if (itemAsString.startsWith("Yes")) {
-                console.log(
+                logMessage(
                   `Creating/updating ${filesToBeUpdated.length} files`
                 );
                 try {
@@ -109,7 +113,7 @@ export function activate(context: vscode.ExtensionContext) {
                     `Created/updated ${filesToBeUpdated.length} files`
                   );
                 } catch (err) {
-                  console.log(err);
+                  logMessage(`Error: ${JSON.stringify(err)}`);
                   vscode.window.showInformationMessage(
                     `Failed creating/updating ${filesToBeUpdated.length} files`
                   );
@@ -126,4 +130,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+  outputChannel?.dispose();
+}
