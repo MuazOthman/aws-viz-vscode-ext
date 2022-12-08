@@ -36,10 +36,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@muazothman/aws-viz@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@muazothman/aws-viz/-/aws-viz-0.0.12.tgz#b0e095e9c7f7364fa821bfe30e1f577b8952c7a5"
-  integrity sha512-YNPUu8Ryz5FvZIO+s6V1LEotcE6zo9Ye86TVqBUEfo6Y6DL/Ceg6Yj8ZsZt1CvUzKEvj3nkbkaDZkVkExyL9pA==
+"@muazothman/aws-viz@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@muazothman/aws-viz/-/aws-viz-0.0.13.tgz#833c8e5a668a707dfd364ab14a6cf5c20771bb15"
+  integrity sha512-Om2ZCGR4y3oCTPw3w+MrkqgCsfRgls0iswNJf+LE9XPJzw75ozzwDdzgTsXuO1yM52P6DmAou9SqrJcUKHk75g==
   dependencies:
     deepmerge "^4.2.2"
     fast-xml-parser "^4.0.12"
