@@ -2,7 +2,7 @@
   "name": "aws-viz-vscode-ext",
   "displayName": "AWS-Viz",
   "description": "Generate Typescript and SAM template code for an AWS cloud-native serverless applications from diagrams",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publisher": "MuazOthman",
   "engines": {
     "vscode": "^1.63.0"
@@ -63,6 +63,6 @@
     "typescript": "^4.9.3"
   },
   "dependencies": {
-    "@muazothman/aws-viz": "^0.0.13"
+    "@muazothman/aws-viz": "^0.0.14"
   }
 }

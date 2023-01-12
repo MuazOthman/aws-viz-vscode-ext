@@ -36,14 +36,14 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@muazothman/aws-viz@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@muazothman/aws-viz/-/aws-viz-0.0.13.tgz#833c8e5a668a707dfd364ab14a6cf5c20771bb15"
-  integrity sha512-Om2ZCGR4y3oCTPw3w+MrkqgCsfRgls0iswNJf+LE9XPJzw75ozzwDdzgTsXuO1yM52P6DmAou9SqrJcUKHk75g==
+"@muazothman/aws-viz@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@muazothman/aws-viz/-/aws-viz-0.0.14.tgz#5be746da78108999e1981f9a1b2630f59c85401a"
+  integrity sha512-1nVayFasVwyb/H0zJ/Ea3wh57hEGG9HV7iLJla9FJisNuaHvIl1D+qWpB7foba7fZeWyPnHuSu5vFXeFotGTcQ==
   dependencies:
     deepmerge "^4.2.2"
-    fast-xml-parser "^4.0.12"
-    html-to-text "^9.0.0"
+    fast-xml-parser "^4.0.13"
+    html-to-text "^9.0.3"
     lodash.isequal "^4.5.0"
     lodash.uniq "^4.5.0"
     pako "^2.1.0"
@@ -564,10 +564,10 @@ fast-levenshtein@^2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
 
-fast-xml-parser@^4.0.12:
-  version "4.0.12"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.0.12.tgz#9e3117d76523d20dfbd30482c1621fb9b03a7817"
-  integrity sha512-/Nmo3823Rfx7UTJosQNz6hBVbszfv1Unb7A4iNJZhvCGCgtIHv/uODmrYIH8vc05+XKZ4hNIOv6SlBejvJgATw==
+fast-xml-parser@^4.0.13:
+  version "4.0.13"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.0.13.tgz#dab3e7ea17d39805af0a9f6d041f4c975c2b9b58"
+  integrity sha512-g+OboAw8ol1FgTHhKLR7ZHcItNudceiY04BBrvqa0JBWoPhi/+e5r4H5AeW+EsQCroJLJwsuOP3dD3c6cc5uOg==
   dependencies:
     strnum "^1.0.5"
 
@@ -688,13 +688,14 @@ has-flag@^4.0.0:
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
-html-to-text@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/html-to-text/-/html-to-text-9.0.0.tgz#9ee91686373a07a40fd4e933d7d4d60b48d65f17"
-  integrity sha512-nKlrWW/7/9ClpXHOVWHg9FYKc6QXfBeC9XVZQbE3eRC5sqTsN91LvwI/SZMz2j2WG4Ci9FfWjoCZ30c8cErt0Q==
+html-to-text@^9.0.3:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/html-to-text/-/html-to-text-9.0.3.tgz#331368f32fcb270c59dbd3a7fdb32813d2a490bc"
+  integrity sha512-hxDF1kVCF2uw4VUJ3vr2doc91pXf2D5ngKcNviSitNkhP9OMOaJkDrFIFL6RMvko7NisWTEiqGpQ9LAxcVok1w==
   dependencies:
     "@selderee/plugin-htmlparser2" "^0.10.0"
     deepmerge "^4.2.2"
+    dom-serializer "^2.0.0"
     htmlparser2 "^8.0.1"
     selderee "^0.10.0"
 
